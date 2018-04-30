@@ -614,6 +614,8 @@ static void pkgi_do_tail(Downloader& downloader)
         pkgi_snprintf(text, sizeof(text), "Idle");
 
     pkgi_draw_text(0, bottom_y, PKGI_COLOR_TEXT_TAIL, text);
+	
+	
 
     const auto second_line = bottom_y + font_height + PKGI_MAIN_ROW_PADDING;
 
@@ -642,6 +644,15 @@ static void pkgi_do_tail(Downloader& downloader)
             second_line,
             PKGI_COLOR_TEXT_TAIL,
             free);
+			
+	//show partition being used for psp / psx games
+	pkgi_snprintf(text, sizeof(text), "PSP/PSX partition: %s",pkgi_get_partition());
+	rightw = pkgi_text_width(text);
+	pkgi_draw_text(
+		VITA_WIDTH - PKGI_MAIN_HLINE_EXTRA - rightw,
+		bottom_y,
+		PKGI_COLOR_TEXT_TAIL,
+		text);
 
     int left = pkgi_text_width(text) + PKGI_MAIN_TEXT_PADDING;
     int right = rightw + PKGI_MAIN_TEXT_PADDING;

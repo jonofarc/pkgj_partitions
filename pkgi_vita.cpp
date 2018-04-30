@@ -626,7 +626,7 @@ int pkgi_battery_is_charging()
 
 const char* pkgi_get_partition(void)
 {
-    LOG("%s",partition);
+    
     if ((partition != NULL) && (partition[0] == '\0')) {
         return "uma0:";
     }else{
@@ -651,13 +651,14 @@ uint64_t pkgi_get_free_space(void)
     if (pkgi_is_unsafe_mode())
     {
         SceIoDevInfo info{};
-        sceIoDevctl("ux0:", 0x3001, NULL, 0, &info, sizeof(info));
+        sceIoDevctl(pkgi_get_partition(), 0x3001, NULL, 0, &info, sizeof(info));
         return info.free_size;
     }
     else
     {
         uint64_t free, max;
-        char dev[] = "ux0:";
+        char *dev;
+		strcpy(dev,pkgi_get_partition());
         sceAppMgrGetDevInfo(dev, &max, &free);
         return free;
     }
@@ -670,7 +671,7 @@ const char* pkgi_get_config_folder(void)
 
 const char* pkgi_get_temp_folder(void)
 {
-    LOG("Partition Jon: %s",pkgi_get_partition());
+    
 	//cant find a proper way to return pkgi_get_partition() + "pkgi" as it goes null when accesed by Download::pkgi_download on pkgi_download.cpp
 	if(strcmp(pkgi_get_partition(),"ux0") == 0){
 		return "ux0:pkgi";		
