@@ -1,0 +1,22 @@
+notifications:
+  email:
+    on_success: never
+
+git:
+  depth: 1
+
+os: linux
+language: cpp
+dist: trusty
+sudo: false
+
+install:
+  - cd ${TRAVIS_BUILD_DIR}
+  - curl -L "https://github.com/vitasdk/autobuilds/releases/download/master-linux-v589/vitasdk-x86_64-linux-gnu-2017-11-13_19-11-13.tar.bz2" | tar xj
+  - for name in libvita2d libpng zlib; do curl -L "http://dl.vitasdk.org/${name}.tar.xz" | tar -xJC vitasdk/arm-vita-eabi; done
+
+script:
+  - export VITASDK=${TRAVIS_BUILD_DIR}/vitasdk
+  - export PATH=${VITASDK}/bin:${PATH}
+  - cmake -DCMAKE_BUILD_TYPE=Release .
+  - cmake --build .

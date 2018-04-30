@@ -1,0 +1,1 @@
+cmd='/usr/local/Cellar/cmake/3.11.1/bin/cmake;-DCMAKE_TOOLCHAIN_FILE=/usr/local/vitasdk/share/vita.toolchain.cmake;-DFMT_TEST=OFF;-DHAVE_OPEN=OFF;-DCMAKE_INSTALL_PREFIX=/Users/Jonathan/Documents/Projects/pkgj/fmtinst;-GUnix Makefiles;<SOURCE_DIR><SOURCE_SUBDIR>'

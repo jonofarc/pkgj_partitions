@@ -1,0 +1,9 @@
+/Users/Jonathan/Documents/Projects/pkgj/CMakeFiles/copy.dir
+/Users/Jonathan/Documents/Projects/pkgj/CMakeFiles/send.dir
+/Users/Jonathan/Documents/Projects/pkgj/CMakeFiles/edit_cache.dir
+/Users/Jonathan/Documents/Projects/pkgj/CMakeFiles/pkgj.vpk.dir
+/Users/Jonathan/Documents/Projects/pkgj/CMakeFiles/eboot.bin.dir
+/Users/Jonathan/Documents/Projects/pkgj/CMakeFiles/pkgj.dir
+/Users/Jonathan/Documents/Projects/pkgj/CMakeFiles/fmtproject.dir
+/Users/Jonathan/Documents/Projects/pkgj/CMakeFiles/rebuild_cache.dir
+/Users/Jonathan/Documents/Projects/pkgj/CMakeFiles/Boost.dir

@@ -1,0 +1,2 @@
+/usr/local/vitasdk/bin/arm-vita-eabi-ar qc libfmt.a  CMakeFiles/fmt.dir/format.cc.obj CMakeFiles/fmt.dir/ostream.cc.obj CMakeFiles/fmt.dir/printf.cc.obj
+/usr/local/vitasdk/bin/arm-vita-eabi-ranlib libfmt.a

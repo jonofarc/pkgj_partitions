@@ -1,0 +1,14 @@
+/Users/Jonathan/Documents/Projects/pkgj/fmtinst/lib/cmake/fmt/fmt-config.cmake
+/Users/Jonathan/Documents/Projects/pkgj/fmtinst/lib/cmake/fmt/fmt-config-version.cmake
+/Users/Jonathan/Documents/Projects/pkgj/fmtinst/lib/cmake/fmt/fmt-targets.cmake
+/Users/Jonathan/Documents/Projects/pkgj/fmtinst/lib/cmake/fmt/fmt-targets-release.cmake
+/Users/Jonathan/Documents/Projects/pkgj/fmtinst/lib/libfmt.a
+/Users/Jonathan/Documents/Projects/pkgj/fmtinst/include/fmt/container.h
+/Users/Jonathan/Documents/Projects/pkgj/fmtinst/include/fmt/format.h
+/Users/Jonathan/Documents/Projects/pkgj/fmtinst/include/fmt/format.cc
+/Users/Jonathan/Documents/Projects/pkgj/fmtinst/include/fmt/ostream.h
+/Users/Jonathan/Documents/Projects/pkgj/fmtinst/include/fmt/ostream.cc
+/Users/Jonathan/Documents/Projects/pkgj/fmtinst/include/fmt/printf.h
+/Users/Jonathan/Documents/Projects/pkgj/fmtinst/include/fmt/printf.cc
+/Users/Jonathan/Documents/Projects/pkgj/fmtinst/include/fmt/string.h
+/Users/Jonathan/Documents/Projects/pkgj/fmtinst/include/fmt/time.h

@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/Jonathan/Documents/Projects/pkgj/CMakeFiles/fmtproject"
+		},
+		{
+			"file" : "/Users/Jonathan/Documents/Projects/pkgj/CMakeFiles/fmtproject.rule"
+		},
+		{
+			"file" : "/Users/Jonathan/Documents/Projects/pkgj/CMakeFiles/fmtproject-complete.rule"
+		},
+		{
+			"file" : "/Users/Jonathan/Documents/Projects/pkgj/fmtproject-prefix/src/fmtproject-stamp/fmtproject-install.rule"
+		},
+		{
+			"file" : "/Users/Jonathan/Documents/Projects/pkgj/fmtproject-prefix/src/fmtproject-stamp/fmtproject-mkdir.rule"
+		},
+		{
+			"file" : "/Users/Jonathan/Documents/Projects/pkgj/fmtproject-prefix/src/fmtproject-stamp/fmtproject-download.rule"
+		},
+		{
+			"file" : "/Users/Jonathan/Documents/Projects/pkgj/fmtproject-prefix/src/fmtproject-stamp/fmtproject-update.rule"
+		},
+		{
+			"file" : "/Users/Jonathan/Documents/Projects/pkgj/fmtproject-prefix/src/fmtproject-stamp/fmtproject-patch.rule"
+		},
+		{
+			"file" : "/Users/Jonathan/Documents/Projects/pkgj/fmtproject-prefix/src/fmtproject-stamp/fmtproject-configure.rule"
+		},
+		{
+			"file" : "/Users/Jonathan/Documents/Projects/pkgj/fmtproject-prefix/src/fmtproject-stamp/fmtproject-build.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"fmtproject"
+		],
+		"name" : "fmtproject"
+	}
+}

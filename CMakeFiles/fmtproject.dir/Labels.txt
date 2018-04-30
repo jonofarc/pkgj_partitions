@@ -1,0 +1,13 @@
+# Target labels
+ fmtproject
+# Source files and their labels
+/Users/Jonathan/Documents/Projects/pkgj/CMakeFiles/fmtproject
+/Users/Jonathan/Documents/Projects/pkgj/CMakeFiles/fmtproject.rule
+/Users/Jonathan/Documents/Projects/pkgj/CMakeFiles/fmtproject-complete.rule
+/Users/Jonathan/Documents/Projects/pkgj/fmtproject-prefix/src/fmtproject-stamp/fmtproject-install.rule
+/Users/Jonathan/Documents/Projects/pkgj/fmtproject-prefix/src/fmtproject-stamp/fmtproject-mkdir.rule
+/Users/Jonathan/Documents/Projects/pkgj/fmtproject-prefix/src/fmtproject-stamp/fmtproject-download.rule
+/Users/Jonathan/Documents/Projects/pkgj/fmtproject-prefix/src/fmtproject-stamp/fmtproject-update.rule
+/Users/Jonathan/Documents/Projects/pkgj/fmtproject-prefix/src/fmtproject-stamp/fmtproject-patch.rule
+/Users/Jonathan/Documents/Projects/pkgj/fmtproject-prefix/src/fmtproject-stamp/fmtproject-configure.rule
+/Users/Jonathan/Documents/Projects/pkgj/fmtproject-prefix/src/fmtproject-stamp/fmtproject-build.rule
