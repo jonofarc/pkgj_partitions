@@ -68,6 +68,10 @@ int pkgi_bettery_get_level();
 int pkgi_battery_is_low();
 int pkgi_battery_is_charging();
 
+void pkgi_set_partition_ux0(void);
+void pkgi_set_partition_ur0(void);
+void pkgi_set_partition_uma0(void);
+
 uint64_t pkgi_get_free_space(void);
 const char* pkgi_get_config_folder(void);
 const char* pkgi_get_temp_folder(void);

@@ -673,11 +673,11 @@ const char* pkgi_get_temp_folder(void)
 {
     
 	//cant find a proper way to return pkgi_get_partition() + "pkgi" as it goes null when accesed by Download::pkgi_download on pkgi_download.cpp
-	if(strcmp(pkgi_get_partition(),"ux0") == 0){
+	if(strcmp(pkgi_get_partition(),"ux0:") == 0){
 		return "ux0:pkgi";		
-	} else if(strcmp(pkgi_get_partition(),"ur0") == 0){
+	} else if(strcmp(pkgi_get_partition(),"ur0:") == 0){
 		return "ur0:pkgi";		
-	} else if(strcmp(pkgi_get_partition(),"uma0") == 0){
+	} else if(strcmp(pkgi_get_partition(),"uma0:") == 0){
 		return "uma0:pkgi";		
 	} else{
 		return "uma0:pkgi";	
@@ -733,8 +733,8 @@ int pkgi_dlc_is_installed(const char* content)
 int pkgi_psp_is_installed(const char* content)
 {
     char path[128];
-    snprintf(path, sizeof(path), "ux0:pspemu/ISO/%.9s.iso", content + 7);
-
+    //snprintf(path, sizeof(path), "ux0:pspemu/ISO/%.9s.iso", content + 7); 
+	snprintf(path, sizeof(path), "%spspemu/ISO/%.9s.iso", pkgi_get_partition(),content + 7);
     SceIoStat stat;
     return sceIoGetstat(path, &stat) >= 0;
 }
@@ -742,8 +742,8 @@ int pkgi_psp_is_installed(const char* content)
 int pkgi_psx_is_installed(const char* content)
 {
     char path[128];
-    snprintf(path, sizeof(path), "ux0:pspemu/PSP/GAME/%.9s", content + 7);
-
+    //snprintf(path, sizeof(path), "ux0:pspemu/PSP/GAME/%.9s", content + 7);
+	snprintf(path, sizeof(path), "%spspemu/PSP/GAME/%.9s", pkgi_get_partition(),content + 7);
     SceIoStat stat;
     return sceIoGetstat(path, &stat) >= 0;
 }

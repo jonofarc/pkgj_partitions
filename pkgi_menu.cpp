@@ -4,6 +4,7 @@ extern "C" {
 #include "pkgi_style.h"
 }
 #include "pkgi_config.hpp"
+#include <string.h>
 
 static int menu_search_clear;
 
@@ -156,7 +157,24 @@ int pkgi_do_menu(pkgi_input* input)
     }
     else if (input->pressed & PKGI_BUTTON_T)
     {
+		
         menu_result = MenuResultAccept;
+        menu_delta = -1;
+        return 1;
+    }
+    else if (input->pressed & PKGI_BUTTON_SELECT)
+    {
+		LOG("pess select: %s",pkgi_get_partition());
+		if(strcmp(pkgi_get_partition(),"ux0:") == 0){
+			pkgi_set_partition_uma0();		
+		} else if(strcmp(pkgi_get_partition(),"ur0:") == 0){
+			pkgi_set_partition_ux0();		
+		} else if(strcmp(pkgi_get_partition(),"uma0:") == 0){
+			pkgi_set_partition_ur0();		
+		} else{
+			pkgi_set_partition_ux0();
+		}
+        menu_result = MenuResultCancel;
         menu_delta = -1;
         return 1;
     }

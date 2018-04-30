@@ -653,6 +653,14 @@ static void pkgi_do_tail(Downloader& downloader)
 		bottom_y,
 		PKGI_COLOR_TEXT_TAIL,
 		text);
+	
+	pkgi_snprintf(text, sizeof(text), "Change Partition: select");
+	rightw = pkgi_text_width(text);
+	pkgi_draw_text(
+		(VITA_WIDTH/2) - PKGI_MAIN_HLINE_EXTRA - (rightw/2),
+		bottom_y,
+		PKGI_COLOR_TEXT_TAIL,
+		text);
 
     int left = pkgi_text_width(text) + PKGI_MAIN_TEXT_PADDING;
     int right = rightw + PKGI_MAIN_TEXT_PADDING;
@@ -809,7 +817,7 @@ int main()
             // never happens, just to shut up the compiler
             break;
         }
-
+		//draw bottom bar
         pkgi_do_tail(downloader);
 
         if (pkgi_dialog_is_open())
