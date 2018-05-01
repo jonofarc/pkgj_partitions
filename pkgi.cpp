@@ -252,9 +252,10 @@ static void pkgi_do_main(Downloader& downloader, pkgi_input* input)
 	   			pkgi_set_partition_ux0();
 	   		}
 			LOG("current url: %s",current_url);
-			if(strcmp(current_url,config.psx_games_url.c_str())){
+			LOG("current url: %i",strcmp(current_url,config.psx_games_url.c_str()));
+			if(strcmp(current_url,config.psx_games_url.c_str())== 0){
 				RefreshGames(config.psx_games_url.c_str(),ModePsxGames);
-			}else if(strcmp(current_url,config.psp_games_url.c_str())){
+			}else if(strcmp(current_url,config.psp_games_url.c_str())== 0){
 				RefreshGames(config.psp_games_url.c_str(),ModePspGames);
 			}
 	         //jon  
