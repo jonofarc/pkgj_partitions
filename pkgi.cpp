@@ -251,7 +251,7 @@ static void pkgi_do_main(Downloader& downloader, pkgi_input* input)
 	   		} else{
 	   			pkgi_set_partition_ux0();
 	   		}
-			Log("current url: %s",current_url);
+			LOG("current url: %s",current_url);
 			if(strcmp(current_url,config.psx_games_url.c_str())){
 				RefreshGames(config.psx_games_url.c_str(),ModePsxGames);
 			}else if(strcmp(current_url,config.psp_games_url.c_str())){
