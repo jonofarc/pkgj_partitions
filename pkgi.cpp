@@ -661,9 +661,15 @@ static void pkgi_do_tail(Downloader& downloader)
         pkgi_snprintf(text, sizeof(text), "Count: %u (%u)", count, total);
     }
     pkgi_draw_text(0, second_line, PKGI_COLOR_TEXT_TAIL, text);
-
+	
+	//get free space of partition only if looking at psx or psp games else show ux
     char size[64];
-    pkgi_friendly_size(size, sizeof(size), pkgi_get_free_space());
+	if(strcmp(current_url,config.psx_games_url.c_str())== 0 || strcmp(current_url,config.psp_games_url.c_str())== 0){
+		pkgi_friendly_size(size, sizeof(size), pkgi_get_free_space(pkgi_get_partition()));
+	}else{
+		pkgi_friendly_size(size, sizeof(size), pkgi_get_free_space("ux0:"));
+	}
+    
 
     char free[64];
     pkgi_snprintf(free, sizeof(free), "Free: %s", size);
@@ -674,7 +680,8 @@ static void pkgi_do_tail(Downloader& downloader)
             second_line,
             PKGI_COLOR_TEXT_TAIL,
             free);
-			
+	
+	
 	//show partition being used for psp / psx games
 	pkgi_snprintf(text, sizeof(text), "PSP/PSX partition: %s",pkgi_get_partition());
 	rightw = pkgi_text_width(text);
@@ -691,7 +698,7 @@ static void pkgi_do_tail(Downloader& downloader)
 		bottom_y,
 		PKGI_COLOR_TEXT_TAIL,
 		text);
-
+			
     int left = pkgi_text_width(text) + PKGI_MAIN_TEXT_PADDING;
     int right = rightw + PKGI_MAIN_TEXT_PADDING;
 

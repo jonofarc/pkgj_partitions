@@ -37,7 +37,7 @@ extern "C" {
 #include <string.h>
 
 int install_attemps =0;
-char partition[]="uma0:";
+char partition[]="ux0:";
 static vita2d_pgf* g_font;
 
 static SceKernelLwMutexWork g_dialog_lock;
@@ -628,7 +628,7 @@ const char* pkgi_get_partition(void)
 {
     
     if ((partition != NULL) && (partition[0] == '\0')) {
-        return "uma0:";
+        return "ux0:";
     }else{
         return partition;
     }
@@ -646,19 +646,19 @@ void pkgi_set_partition_uma0()
 {
     strcpy(partition, "uma0:");
 }
-uint64_t pkgi_get_free_space(void)
+uint64_t pkgi_get_free_space(const char* RequestedPartition)
 {
     if (pkgi_is_unsafe_mode())
     {
         SceIoDevInfo info{};
-        sceIoDevctl(pkgi_get_partition(), 0x3001, NULL, 0, &info, sizeof(info));
+        sceIoDevctl(RequestedPartition, 0x3001, NULL, 0, &info, sizeof(info));
         return info.free_size;
     }
     else
     {
         uint64_t free, max;
         char *dev;
-		strcpy(dev,pkgi_get_partition());
+		strcpy(dev,RequestedPartition);
         sceAppMgrGetDevInfo(dev, &max, &free);
         return free;
     }
@@ -680,7 +680,7 @@ const char* pkgi_get_temp_folder(void)
 	} else if(strcmp(pkgi_get_partition(),"uma0:") == 0){
 		return "uma0:pkgi";		
 	} else{
-		return "uma0:pkgi";	
+		return "ux0:pkgi";	
 	}
    
 
