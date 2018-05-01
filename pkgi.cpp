@@ -10,6 +10,7 @@ extern "C" {
 #include "pkgi_config.hpp"
 #include "pkgi_download.hpp"
 #include "pkgi_downloader.hpp"
+#include <string.h>
 
 #include <memory>
 
@@ -140,6 +141,13 @@ static void pkgi_friendly_size(char* text, uint32_t textlen, int64_t size)
     }
 }
 
+void RefreshGames(const char* url, Mode SetMode ){
+    current_url = url;
+    state = StateRefreshing;
+    mode = SetMode;
+    pkgi_start_thread("refresh_thread", &pkgi_refresh_thread);
+}
+
 static void pkgi_do_main(Downloader& downloader, pkgi_input* input)
 {
     int col_titleid = 0;
@@ -231,6 +239,26 @@ static void pkgi_do_main(Downloader& downloader, pkgi_input* input)
                 }
             }
         }
+	    else if (input->pressed & PKGI_BUTTON_SELECT)
+	    {
+	   		LOG("pess select: %s",pkgi_get_partition());
+	   		if(strcmp(pkgi_get_partition(),"ux0:") == 0){
+	   			pkgi_set_partition_uma0();		
+	   		} else if(strcmp(pkgi_get_partition(),"ur0:") == 0){
+	   			pkgi_set_partition_ux0();		
+	   		} else if(strcmp(pkgi_get_partition(),"uma0:") == 0){
+	   			pkgi_set_partition_ur0();		
+	   		} else{
+	   			pkgi_set_partition_ux0();
+	   		}
+			Log("current url: %s",current_url);
+			if(strcmp(current_url,config.psx_games_url.c_str())){
+				RefreshGames(config.psx_games_url.c_str(),ModePsxGames);
+			}else if(strcmp(current_url,config.psp_games_url.c_str())){
+				RefreshGames(config.psp_games_url.c_str(),ModePspGames);
+			}
+	         //jon  
+	   }
     }
 
     int y = font_height + PKGI_MAIN_HLINE_EXTRA;
@@ -485,6 +513,7 @@ static void pkgi_do_main(Downloader& downloader, pkgi_input* input)
                             !config.psp_games_url.empty() << 4;
         pkgi_menu_start(search_active, &config, allow_refresh);
     }
+    
 }
 
 static void pkgi_do_refresh(void)
@@ -877,34 +906,19 @@ int main()
                     pkgi_save_config(config);
                     break;
                 case MenuResultRefreshGames:
-                    current_url = config.games_url.c_str();
-                    state = StateRefreshing;
-                    mode = ModeGames;
-                    pkgi_start_thread("refresh_thread", &pkgi_refresh_thread);
+					RefreshGames(config.games_url.c_str(),ModeGames);
                     break;
                 case MenuResultRefreshUpdates:
-                    current_url = config.updates_url.c_str();
-                    state = StateRefreshing;
-                    mode = ModeUpdates;
-                    pkgi_start_thread("refresh_thread", &pkgi_refresh_thread);
+					RefreshGames(config.updates_url.c_str(),ModeUpdates);
                     break;
                 case MenuResultRefreshDlcs:
-                    current_url = config.dlcs_url.c_str();
-                    state = StateRefreshing;
-                    mode = ModeDlcs;
-                    pkgi_start_thread("refresh_thread", &pkgi_refresh_thread);
+					RefreshGames(config.dlcs_url.c_str(),ModeDlcs);
                     break;
                 case MenuResultRefreshPsxGames:
-                    current_url = config.psx_games_url.c_str();
-                    state = StateRefreshing;
-                    mode = ModePsxGames;
-                    pkgi_start_thread("refresh_thread", &pkgi_refresh_thread);
+					RefreshGames(config.psx_games_url.c_str(),ModePsxGames);
                     break;
                 case MenuResultRefreshPspGames:
-                    current_url = config.psp_games_url.c_str();
-                    state = StateRefreshing;
-                    mode = ModePspGames;
-                    pkgi_start_thread("refresh_thread", &pkgi_refresh_thread);
+					RefreshGames(config.psp_games_url.c_str(),ModePspGames);
                     break;
                 }
             }
@@ -916,3 +930,4 @@ int main()
     LOG("finished");
     pkgi_end();
 }
+
