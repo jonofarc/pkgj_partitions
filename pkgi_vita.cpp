@@ -683,8 +683,6 @@ const char* pkgi_get_temp_folder(void)
 		return "ux0:pkgi";	
 	}
    
-
-    //jon temp
 }
 
 const char* pkgi_get_app_folder(void)
@@ -855,9 +853,9 @@ int pkgi_install_pspgame(const char* contentid)
             contentid);
 
     char dest[128];
-    snprintf(dest, sizeof(dest), "ux0:pspemu/ISO/%.9s.iso", contentid + 7);
+    snprintf(dest, sizeof(dest), "%spspemu/ISO/%.9s.iso",pkgi_get_partition(), contentid + 7);
 
-    LOG("installing psp game at %s", path);
+    LOG("installing psp game at %s to %s", path, dest);
     int res = sceIoRename(path, dest);
     if (res == 0)
     {
@@ -882,7 +880,6 @@ int pkgi_install_psxgame(const char* contentid)
     char dest[128];
     snprintf(dest, sizeof(dest), "%spspemu/PSP/GAME/%.9s",pkgi_get_partition(), contentid + 7);
 
-    //jon psx games
     LOG("installing psx game at %s to %s", path,dest);
     int res = sceIoRename(path, dest);
     if (res == 0)
