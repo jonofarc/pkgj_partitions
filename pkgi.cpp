@@ -241,25 +241,30 @@ static void pkgi_do_main(Downloader& downloader, pkgi_input* input)
         }
 	    else if (input->pressed & PKGI_BUTTON_SELECT)
 	    {
-	   		LOG("pess select: %s",pkgi_get_partition());
-	   		if(strcmp(pkgi_get_partition(),"ux0:") == 0){
-	   			pkgi_set_partition_uma0();		
-	   		} else if(strcmp(pkgi_get_partition(),"ur0:") == 0){
-	   			pkgi_set_partition_ux0();		
-	   		} else if(strcmp(pkgi_get_partition(),"uma0:") == 0){
-	   			pkgi_set_partition_ur0();		
-	   		} else{
-	   			pkgi_set_partition_ux0();
+			const auto current_download = downloader.get_current_download();
+			if(!current_download){
+		   		
+		   		if(strcmp(pkgi_get_partition(),"ux0:") == 0){
+		   			pkgi_set_partition_uma0();		
+		   		} else if(strcmp(pkgi_get_partition(),"ur0:") == 0){
+		   			pkgi_set_partition_ux0();		
+		   		} else if(strcmp(pkgi_get_partition(),"uma0:") == 0){
+		   			pkgi_set_partition_ur0();		
+		   		} else{
+		   			pkgi_set_partition_ux0();
+		   		}
+				
+				if(strcmp(current_url,config.psx_games_url.c_str())== 0){
+					RefreshGames(config.psx_games_url.c_str(),ModePsxGames);
+				}else if(strcmp(current_url,config.psp_games_url.c_str())== 0){
+					RefreshGames(config.psp_games_url.c_str(),ModePspGames);
+				}
+			}// end !current_download
+	   		else{
+	   			LOG("Cant change partition Download in progress");
 	   		}
-			LOG("current url: %s",current_url);
-			LOG("current url: %i",strcmp(current_url,config.psx_games_url.c_str()));
-			if(strcmp(current_url,config.psx_games_url.c_str())== 0){
-				RefreshGames(config.psx_games_url.c_str(),ModePsxGames);
-			}else if(strcmp(current_url,config.psp_games_url.c_str())== 0){
-				RefreshGames(config.psp_games_url.c_str(),ModePspGames);
-			}
-	         //jon  
-	   }
+	         
+	   }// end if (input->pressed & PKGI_BUTTON_SELECT)
     }
 
     int y = font_height + PKGI_MAIN_HLINE_EXTRA;
@@ -691,13 +696,17 @@ static void pkgi_do_tail(Downloader& downloader)
 		PKGI_COLOR_TEXT_TAIL,
 		text);
 	
-	pkgi_snprintf(text, sizeof(text), "Change Partition: select");
-	rightw = pkgi_text_width(text);
-	pkgi_draw_text(
-		(VITA_WIDTH/2) - PKGI_MAIN_HLINE_EXTRA - (rightw/2),
-		bottom_y,
-		PKGI_COLOR_TEXT_TAIL,
-		text);
+		//only show if no file is being downloaded as text may sometimes overlap
+	if(!current_download){
+		pkgi_snprintf(text, sizeof(text), "Change Partition: select");
+		rightw = pkgi_text_width(text);
+		pkgi_draw_text(
+			(VITA_WIDTH/2) - PKGI_MAIN_HLINE_EXTRA - (rightw/2),
+			bottom_y,
+			PKGI_COLOR_TEXT_TAIL,
+			text);	
+	}
+	
 			
     int left = pkgi_text_width(text) + PKGI_MAIN_TEXT_PADDING;
     int right = rightw + PKGI_MAIN_TEXT_PADDING;
